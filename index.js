@@ -1,10 +1,16 @@
 const { Client, RemoteAuth } = require('whatsapp-web.js');
 const { MongoStore } = require('wwebjs-mongo');
 const mongoose = require('mongoose');
+const schedule = require('node-schedule');
 const qrcode = require('qrcode-terminal');
 require('dotenv').config();
 
 const messageController = require('./src/controllers/messageController');
+const userController = require('./src/controllers/userController');
+
+schedule.scheduleJob('48 11 * * *',()=>{
+  userController.resetUsers();
+})
 
 const connection = mongoose.connection;
 connection.once('open', () => {
