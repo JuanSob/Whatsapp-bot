@@ -8,7 +8,7 @@ require('dotenv').config();
 const messageController = require('./src/controllers/messageController');
 const userController = require('./src/controllers/userController');
 
-schedule.scheduleJob('48 11 * * *',()=>{
+schedule.scheduleJob('00 8 * * *',()=>{
   userController.resetUsers();
 })
 
